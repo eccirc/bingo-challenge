@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1700922280982" clover="3.2.0">
+  <project timestamp="1700922280983" name="All files">
+    <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="8" coveredmethods="8" elements="30" coveredelements="30" complexity="0" loc="13" ncloc="13" packages="1" files="1" classes="1"/>
+    <file name="bingoFunctions.ts" path="/home/eccirc/Programming/Node/bingoNode/src/functions/bingoFunctions.ts">
+      <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="8" coveredmethods="8"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="9" type="stmt"/>
+      <line num="5" count="46" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="8" type="stmt"/>
+      <line num="9" count="25" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="4" type="stmt"/>
+      <line num="16" count="4" type="cond" truecount="3" falsecount="0"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="19" count="50" type="stmt"/>
+      <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+    </file>
+  </project>
+</coverage>
