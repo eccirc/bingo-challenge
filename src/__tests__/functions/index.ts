@@ -1,6 +1,6 @@
 import "jest"
-import { BingoRow, BingoCard } from "../types";
-import { checkRowsHaveBingo, isCardValid, isCardBingo } from "../bingoFunctions";
+import { BingoRow, BingoCard } from "../../functions/types";
+import { checkRowsHaveBingo, isCardValid, isCardBingo } from "../../functions/bingoFunctions";
 describe('checkRowsHaveBingo', () => {
     // Should return true if all numbers in a row match the numbers in the bingoNumbersList
     it('should return true when all numbers in a row match the numbers in the bingoNumbersList', () => {
