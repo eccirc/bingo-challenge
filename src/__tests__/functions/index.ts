@@ -1,6 +1,7 @@
 import "jest"
-import { BingoRow, BingoCard } from "../../functions/types";
-import { checkRowsHaveBingo, isCardValid, isCardBingo } from "../../functions/bingoFunctions";
+import { BingoRow, BingoCard } from "../../functions/types" 
+import { checkRowsHaveBingo, isCardValid } from "../../functions/bingoFunctions" 
+import { isCardBingo } from "../../functions/isCardBingo" 
 describe('checkRowsHaveBingo', () => {
     // Should return true if all numbers in a row match the numbers in the bingoNumbersList
     it('should return true when all numbers in a row match the numbers in the bingoNumbersList', () => {
@@ -8,13 +9,13 @@ describe('checkRowsHaveBingo', () => {
         [1, 2, 3, 4, 5],
         [6, 7, 8, 9, 10],
         [11, 12, 13, 14, 15]
-      ];
-      const bingoNumbersList: number[] = [1, 2, 3, 4, 5];
+      ] 
+      const bingoNumbersList: number[] = [1, 2, 3, 4, 5] 
   
-      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList);
+      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList) 
   
-      expect(result).toBe(true);
-    });
+      expect(result).toBe(true) 
+    }) 
 
     // Should return false if no row matches the numbers in the bingoNumbersList
     it('should return false when no row matches the numbers in the bingoNumbersList', () => {
@@ -22,13 +23,13 @@ describe('checkRowsHaveBingo', () => {
         [1, 2, 3, 4, 5],
         [6, 7, 8, 9, 10],
         [11, 12, 13, 14, 15]
-      ];
-      const bingoNumbersList: number[] = [16, 17, 18, 19, 20];
+      ] 
+      const bingoNumbersList: number[] = [16, 17, 18, 19, 20] 
   
-      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList);
+      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList) 
   
-      expect(result).toBe(false);
-    });
+      expect(result).toBe(false) 
+    }) 
 
     // Should return true if multiple rows match the numbers in the bingoNumbersList
     it('should return true when multiple rows match the numbers in the bingoNumbersList', () => {
@@ -36,23 +37,23 @@ describe('checkRowsHaveBingo', () => {
         [1, 2, 3, 4, 5],
         [6, 7, 8, 9, 10],
         [11, 12, 13, 14, 15]
-      ];
-      const bingoNumbersList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      ] 
+      const bingoNumbersList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
   
-      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList);
+      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList) 
   
-      expect(result).toBe(true);
-    });
+      expect(result).toBe(true) 
+    }) 
 
     // Should return false if bingoCardArray is empty
     it('should return false when bingoCardArray is empty', () => {
-      const bingoCardArray: BingoRow[] = [];
-      const bingoNumbersList: number[] = [1, 2, 3, 4, 5];
+      const bingoCardArray: BingoRow[] = [] 
+      const bingoNumbersList: number[] = [1, 2, 3, 4, 5] 
   
-      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList);
+      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList) 
   
-      expect(result).toBe(false);
-    });
+      expect(result).toBe(false) 
+    }) 
 
     // Should return false if bingoNumbersList is empty
     it('should return false when bingoNumbersList is empty', () => {
@@ -60,14 +61,14 @@ describe('checkRowsHaveBingo', () => {
         [1, 2, 3, 4, 5],
         [6, 7, 8, 9, 10],
         [11, 12, 13, 14, 15]
-      ];
-      const bingoNumbersList: number[] = [];
+      ] 
+      const bingoNumbersList: number[] = [] 
   
-      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList);
+      const result = checkRowsHaveBingo(bingoCardArray, bingoNumbersList) 
   
-      expect(result).toBe(false);
-    });
-});
+      expect(result).toBe(false) 
+    }) 
+}) 
 
 describe('isCardValid', () => {
 
@@ -79,10 +80,10 @@ describe('isCardValid', () => {
       [11, 12, 13, 14, 15],
       [16, 17, 18, 19, 20],
       [21, 22, 23, 24, 25]
-    ];
-    const result = isCardValid(bingoCardArray);
-    expect(result).toBe(true);
-  });
+    ] 
+    const result = isCardValid(bingoCardArray) 
+    expect(result).toBe(true) 
+  }) 
 
   // Returns False for a bingo card with less than 5 rows or more than 5 columns
 
@@ -93,10 +94,10 @@ describe('isCardValid', () => {
       [11, 12, 13, 14, 15],
       [16, 17, 18, 19, 20],
       [21, 22, 23, 24, 25]
-    ];
-    const result = isCardValid(bingoCardArray);
-    expect(result).toBe(false);
-  });
+    ] 
+    const result = isCardValid(bingoCardArray) 
+    expect(result).toBe(false) 
+  }) 
 
   // Returns False for a bingo card with less than 5 columns or more than 5 rows
   it('should return false for a bingo card with less than 5 columns or more than 5 rows', () => {
@@ -106,10 +107,10 @@ describe('isCardValid', () => {
       [11, 12, 13, 14, 15],
       [16, 17, 18, 19, 20],
       [21, 22, 23]
-    ];
-    const result = isCardValid(bingoCardArray);
-    expect(result).toBe(false);
-  });
+    ] 
+    const result = isCardValid(bingoCardArray) 
+    expect(result).toBe(false) 
+  }) 
 
   // Returns False for an array with elements that are arrays of length other than 5
   it('should return false for an array with elements that are arrays of length other than 5', () => {
@@ -119,11 +120,11 @@ describe('isCardValid', () => {
       [11, 12, 13, 14, 15],
       [16, 17, 18, 19, 20],
       [21, 22, 23, 24, 25]
-    ];
-    const result = isCardValid(bingoCardArray);
-    expect(result).toBe(false);
-  });
-});
+    ] 
+    const result = isCardValid(bingoCardArray) 
+    expect(result).toBe(false) 
+  }) 
+}) 
 
 describe('isCardBingo', () => {
 
@@ -139,7 +140,7 @@ describe('isCardBingo', () => {
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
     expect(result).toBe(true)
-  });
+  }) 
 
   // should return true when a valid bingo card has a complete column of numbers in the bingoNumbersList
   it('should return true when a valid bingo card has a complete column of numbers in the bingoNumbersList', () => {
@@ -150,10 +151,22 @@ describe('isCardBingo', () => {
       row4: [4, 9, 14, 19, 24],
       row5: [5, 10, 15, 20, 25]
     }
-    const bingoNumbersList: number[] = [1, 6, 11, 16, 21]
+    const bingoNumbersList: number[] = [11, 12, 13, 14, 15]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
     expect(result).toBe(true)
-  });
+  })
+  it('should return true when a valid bingo card has a complete column of numbers in a longer bingoNumbersList', () => {
+    const bingoCardObject: BingoCard = {
+      row1: [1, 6, 11, 16, 21],
+      row2: [2, 7, 12, 17, 22],
+      row3: [3, 8, 13, 18, 23],
+      row4: [4, 9, 14, 19, 24],
+      row5: [5, 10, 15, 20, 25]
+    }
+    const bingoNumbersList: number[] = [2, 22, 23, 11, 30, 12, 31, 13, 21, 14, 15]
+    const result = isCardBingo(bingoCardObject, bingoNumbersList)
+    expect(result).toBe(true)
+  }) 
 
   // should return false when the bingoCardObject is empty
   it('should return false when the bingoCardObject is empty', () => {
@@ -161,7 +174,7 @@ describe('isCardBingo', () => {
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
     expect(result).toBe(false)
-  });
+  }) 
 
   // should return false when the bingoCardObject is not a valid bingo card
   it('should return false when the bingoCardObject is not a valid bingo card', () => {
@@ -175,5 +188,5 @@ describe('isCardBingo', () => {
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
     expect(result).toBe(false)
-  });
-});
+  }) 
+}) 

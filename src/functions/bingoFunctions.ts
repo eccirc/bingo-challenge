@@ -1,4 +1,4 @@
-import { BingoRow, BingoCard } from "./types"
+import { BingoRow } from "./types"
 
 export const checkRowsHaveBingo = (bingoCardArray: BingoRow[], bingoNumbersList: number[]): boolean => {
     const listToSet = new Set(bingoNumbersList)
@@ -9,13 +9,3 @@ export const checkRowsHaveBingo = (bingoCardArray: BingoRow[], bingoNumbersList:
     const nRequiredNumbers = bingoCardArray.every(item => Array.isArray(item) && item.length === 5)
     return nRequiredRows && nRequiredNumbers
   }
-
-
-export const isCardBingo = (bingoCardObject: BingoCard, bingoNumbersList: number[]): boolean => {
-    const accrossRows = Object.values(bingoCardObject)
-    if (!Array.isArray(bingoNumbersList) || !isCardValid(accrossRows)) {
-      return false
-    }
-    const downRows = accrossRows.map((item, index) => accrossRows.map((row: BingoRow) => row[index]))
-       return checkRowsHaveBingo(downRows, bingoNumbersList) || checkRowsHaveBingo(accrossRows, bingoNumbersList)
-}
