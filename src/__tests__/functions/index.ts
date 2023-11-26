@@ -127,7 +127,9 @@ describe('isCardValid', () => {
 }) 
 
 describe('isCardBingo', () => {
-
+  const successObject = { isBingo: true, message: "This is your winning card!" }
+  const invalidObject = { isBingo: false, message: "Invalid Bingo Card provided!" }
+  const notBingoObject = { isBingo: false, message: "Try another card!" }
   // should return true when a valid bingo card has a complete row of numbers in the bingoNumbersList
   it('should return true when a valid bingo card has a complete row of numbers in the bingoNumbersList', () => {
     const bingoCardObject: BingoCard = {
@@ -139,7 +141,8 @@ describe('isCardBingo', () => {
     }
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
-    expect(result).toBe(true)
+    expect(result.isBingo).toBe(true)
+    expect(result.message).toEqual(successObject.message)
   }) 
 
   // should return true when a valid bingo card has a complete column of numbers in the bingoNumbersList
@@ -153,7 +156,8 @@ describe('isCardBingo', () => {
     }
     const bingoNumbersList: number[] = [11, 12, 13, 14, 15]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
-    expect(result).toBe(true)
+    expect(result.isBingo).toBe(true)
+    expect(result.message).toEqual(successObject.message)
   })
   it('should return true when a valid bingo card has a complete column of numbers in a longer bingoNumbersList', () => {
     const bingoCardObject: BingoCard = {
@@ -165,7 +169,8 @@ describe('isCardBingo', () => {
     }
     const bingoNumbersList: number[] = [2, 22, 23, 11, 30, 12, 31, 13, 21, 14, 15]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
-    expect(result).toBe(true)
+    expect(result.isBingo).toBe(true)
+    expect(result.message).toEqual(successObject.message)
   }) 
 
   // should return false when the bingoCardObject is empty
@@ -173,7 +178,8 @@ describe('isCardBingo', () => {
     const bingoCardObject: BingoCard = {}
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
-    expect(result).toBe(false)
+    expect(result.isBingo).toBe(false)
+    expect(result.message).toEqual(invalidObject.message)
   }) 
 
   // should return false when the bingoCardObject is not a valid bingo card
@@ -187,6 +193,20 @@ describe('isCardBingo', () => {
     }
     const bingoNumbersList: number[] = [1, 2, 3, 4, 5]
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
-    expect(result).toBe(false)
+    expect(result.isBingo).toBe(false)
+    expect(result.message).toEqual(invalidObject.message)
+  })
+  it('should return false when the bingoCardObject does not have a complete row or column in the bingoNumberList', () => {
+    const bingoCardObject: BingoCard = {
+      row1: [1, 2, 3, 4, 5],
+      row2: [6, 7, 8, 9, 10],
+      row3: [11, 12, 13, 14, 15],
+      row4: [16, 17, 18, 19, 20],
+      row5: [21, 22, 23, 24 ,25],
+    }
+    const bingoNumbersList: number[] = [26, 27, 28, 29, 30, 31, 32, 33]
+    const result = isCardBingo(bingoCardObject, bingoNumbersList)
+    expect(result.isBingo).toBe(false)
+    expect(result.message).toEqual(notBingoObject.message)
   }) 
 }) 

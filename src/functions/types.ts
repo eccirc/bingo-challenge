@@ -7,3 +7,8 @@ export interface BingoCard {
   row4?: BingoRow;
   row5?: BingoRow;
 }
+
+export interface IsBingoObject {
+  isBingo: boolean,
+  message: string,
+}
