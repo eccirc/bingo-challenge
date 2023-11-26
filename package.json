@@ -28,6 +28,9 @@
   "scripts": {
     "lint": "eslint src/**/*.ts --fix",
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prestart": "npm run tsc",
+    "start": "node dist/server/app.js",
+    "tsc": "tsc"
   }
 }
