@@ -1,5 +1,3 @@
 import express from "express"
 
-const testMyFunc = () => {
-    return "HELLO"
-}
+        const me = () => "you"
