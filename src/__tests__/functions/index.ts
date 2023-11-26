@@ -208,5 +208,18 @@ describe('isCardBingo', () => {
     const result = isCardBingo(bingoCardObject, bingoNumbersList)
     expect(result.isBingo).toBe(false)
     expect(result.message).toEqual(notBingoObject.message)
+  })
+  it('should return false when the bingoCardObject nmumbers in the bingoNumbersList but not in a row or column', () => {
+    const bingoCardObject: BingoCard = {
+      row1: [1, 2, 3, 4, 5],
+      row2: [6, 7, 8, 9, 10],
+      row3: [11, 12, 13, 14, 15],
+      row4: [16, 17, 18, 19, 20],
+      row5: [21, 22, 23, 24 ,25],
+    }
+    const bingoNumbersList: number[] = [1,7,13,19,24]
+    const result = isCardBingo(bingoCardObject, bingoNumbersList)
+    expect(result.isBingo).toBe(false)
+    expect(result.message).toEqual(notBingoObject.message)
   }) 
 }) 

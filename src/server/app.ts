@@ -1,6 +1,10 @@
-import express from "express"
+import express, { Response } from "express"
+import { Router } from "express"
 import { Validator } from "jsonschema"
 import bodyParser from "body-parser"
+
+import { bingoCardSchema, bingoRequestObjectSchema } from "./schemas"
+import { isCardBingo } from "../functions/isCardBingo"
 
 const app = express()
 
@@ -11,56 +15,33 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const rowSchema = { type: "array" }
-const bingoCardSchema = {
-    id: "/bingoCard",
-    type: "object",
-    properties: {
-        row1: rowSchema,
-        row2: rowSchema,
-        row3: rowSchema,
-        row4: rowSchema,
-        row5: rowSchema,
-    },
-    required: ["row1"]
-}
-
 validator.addSchema(bingoCardSchema)
+validator.addSchema(bingoRequestObjectSchema)
 
-app.get("/isBingo", (req,res) => {
+const router = Router()
+export const getBingoResult = async (req: express.Request,res: express.Response) => {
     if(req.get('Content-Type') != 'application/json'){
         res.status(401).send("Invalid header format!")
-        return
+        return 
     }
     try{
-        validator.validate(req.body, bingoCardSchema, { throwError: true})
+        validator.validate(req.body, bingoRequestObjectSchema, { throwError: true })
+        validator.validate(req.body.bingoCard, bingoCardSchema, { throwError: true })
     } catch(error: any) {
         res.status(401).end('Invalid body format: ' + error.message);
-        return;
+        return
     }
-    res.status(200).send({isBingo: true})
-})
+    res.status(200).send(isCardBingo(req.body.bingoCard, req.body.bingoNumbersList))
+}
+
+router.get("/isBingo", getBingoResult)
+
+app.use("/api", router)
+
+export default app
 
 app.listen(port, () => {
     console.log("Listening on port: " + port)
 })
 
 
-//var userSchema = {  id: '/User',  type: 'object',  properties: {    username: { type: 'string' },    email: {      type: 'string',      format: 'email'    },    votes: { type: 'integer' }  },  required: ['username', 'email', 'votes']};
-//var itemSchema = {  id: '/Item',  type: 'object',  properties: {
-//        price: { type: 'number' },    width: { type: 'integer' },    height: { type: 'integer' },    added: {      type: 'string',      format: 'date-time'    },    seller: { $ref: '/User' },    image: {      type: 'string',      format: 'uri'    }  
-//    },
-//      required: ['price', 'width', 'height', 'added', 'seller']
-//    };
-//var validator = new jsonValidator();
-//validator.addSchema(userSchema, '/User');
-//app.post('/validate', function(req, res) { 
-//     if (req.get('Content-Type') != 'application/json') { 
-//           res.status(401).send('Invalid header format');    return;  
-//        }  try {  
-//              validator.validate(req.body, itemSchema, { throwError: true }); 
-//             } catch (error) {    res.status(401).end('Invalid body format: ' + error.message);    return; 
-//             }  res.status(200).send('Valid request format');});
-//             
-//app.listen(8000, function() { 
-//console.log('Validation app listening on port 8000');});

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/functions/bingoFunctions.ts</title>
+    <title>Code coverage report for dist/functions/isCardBingo.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/functions</a> bingoFunctions.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">dist/functions</a> isCardBingo.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -73,27 +73,57 @@
 <a name='L8'></a><a href='#L8'>8</a>
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
-<a name='L11'></a><a href='#L11'>11</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">67x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { BingoRow } from "./types"
-&nbsp;
-export const checkRowsHaveBingo = (bingoCardArray: BingoRow[], bingoNumbersList: number[]): boolean =&gt; {
-    const listToSet = new Set(bingoNumbersList)
-    return bingoCardArray.some((row: BingoRow) =&gt; row.every((num) =&gt; listToSet.has(num)))
-}
-  export const isCardValid = (bingoCardArray: BingoRow[]): boolean =&gt; {
-    const nRequiredRows = bingoCardArray.length === 5
-    const nRequiredNumbers = bingoCardArray.every(item =&gt; Array.isArray(item) &amp;&amp; item.length === 5)
-    return nRequiredRows &amp;&amp; nRequiredNumbers
-  }</pre></td></tr></table></pre>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">125x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isCardBingo = void 0;
+const bingoFunctions_1 = require("./bingoFunctions");
+const isCardBingo = (bingoCardObject, bingoNumbersList) =&gt; {
+    const accrossRows = Object.values(bingoCardObject);
+    if (!Array.isArray(bingoNumbersList) || !(0, bingoFunctions_1.isCardValid)(accrossRows)) {
+        return {
+            isBingo: false,
+            message: "Invalid Bingo Card provided!"
+        };
+    }
+    const downRows = accrossRows.map((item, index) =&gt; accrossRows.map((row) =&gt; row[index]));
+    const isBingo = (0, bingoFunctions_1.checkRowsHaveBingo)(downRows, bingoNumbersList) || (0, bingoFunctions_1.checkRowsHaveBingo)(accrossRows, bingoNumbersList);
+    return {
+        isBingo,
+        message: isBingo ? "This is your winning card!" : "Try another card!",
+    };
+};
+exports.isCardBingo = isCardBingo;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
