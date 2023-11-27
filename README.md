@@ -19,7 +19,7 @@ Running the Express server will give you access to **/api/isBingo**, which accep
     }
 }
 ```
-This is validated by the JsonSchema validation package, with further internal validation to ensure the correct types are passed, and that your Bingo Card conforms to a 5x5 structure.
+This is validated by the JsonSchema validation package, with further internal validation to ensure the correct types are passed (including that the arrays contain only numbers), and that your Bingo Card conforms to a 5x5 structure.
 This returns either a 401 for invalid header or body formats, or 200 with the following:
 ```
 { isBingo: bolean, message: string }
