@@ -12,6 +12,17 @@ const invalidBodyList = {
     }  
 }
 
+const invalidBodyListType = {
+    "bingoNumbersList": [1,2,3,"4",5,6],
+    "bingoCard" : {
+        "row1": [12,2,3,4,5],
+        "row2": [16,7,8,9,10],
+        "row3": [18,12,13,14,15],
+        "row4": [20,17,18,19,20],
+        "row5": [21,22,23,24,25]
+    }  
+}
+
 const invalidBodyCard = {
     "bingoNumbersList": true,
     "bingoCard" : "I am not an object!"
@@ -40,6 +51,12 @@ describe("Invalid requests for the isBingo endpoint", () => {
         const res = await request(app)
             .get("/api/isBingo")
             .send(invalidBodyCard)
+        expect(res.statusCode).toEqual(401)
+    })
+    it("Should return a 401 when an array within the body contains a string", async() => {
+        const res = await request(app)
+            .get("/api/isBingo")
+            .send(invalidBodyListType)
         expect(res.statusCode).toEqual(401)
     })
 })

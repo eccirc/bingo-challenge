@@ -30,10 +30,13 @@ with the message portion telling you if you card will win (or not) and a message
 
 - To get everything setup run: `yarn install`
 - Execute tests with: `yarn test` (test coverage page to be found in /coverage/lcov-report/index.html)
-- Start the app with: `yarn start` (Compiles typescript to the /dist directory)
+- Start the app with: `npm start` (Compiles typescript to the /dist directory)
 
 You can then visit `localhost:3000/api/isBingo` in your favorite API testing platform (Postman, Insomnia), set up for a GET request with the above body structure.
 
 ## Technologies
 
 **Node.js**, **Express**, **Typescript**, **Jest**
+
+## Todo_fix
+Package managers (mix of yarn npm)
