@@ -3,7 +3,7 @@ import { Router } from "express"
 import { Validator } from "jsonschema"
 import bodyParser from "body-parser"
 
-import { bingoCardSchema, bingoRequestObjectSchema, rowSchema } from "./schemas"
+import { bingoCardSchema, bingoRequestObjectSchema } from "./schemas"
 import { isCardBingo } from "../functions/isCardBingo"
 
 const app = express()
@@ -15,7 +15,6 @@ const port = process.env.PORT || 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-validator.addSchema(rowSchema)
 validator.addSchema(bingoCardSchema)
 validator.addSchema(bingoRequestObjectSchema)
 
