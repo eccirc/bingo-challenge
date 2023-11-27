@@ -15,6 +15,7 @@ const validator = new jsonschema_1.Validator();
 const port = process.env.PORT || 3000;
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
+validator.addSchema(schemas_1.rowSchema);
 validator.addSchema(schemas_1.bingoCardSchema);
 validator.addSchema(schemas_1.bingoRequestObjectSchema);
 const router = (0, express_2.Router)();

@@ -1,4 +1,4 @@
-export const rowSchema = { type: "array" }
+export const rowSchema = { type: "array", items: { type: "number" } }
 export const bingoCardSchema = {
     id: "/bingoCard",
     type: "object",

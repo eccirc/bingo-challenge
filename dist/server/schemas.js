@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bingoRequestObjectSchema = exports.bingoCardSchema = exports.rowSchema = void 0;
-exports.rowSchema = { type: "array" };
+exports.rowSchema = { type: "array", items: { type: "number" } };
 exports.bingoCardSchema = {
     id: "/bingoCard",
     type: "object",
